@@ -5,7 +5,7 @@ data = pandas.read_csv("Volcanoes.txt")
 lat = list(data["LAT"])
 lon = list(data["LON"])
 elev = list(data["ELEV"])
-
+#
 def color_producer(elevation):
     if elevation < 1000:
         return 'green'

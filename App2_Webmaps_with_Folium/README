@@ -1,0 +1,22 @@
+
+import pandas 是要把欄位給拿出來。
+
+color_producer ; 依高度回傳顏色
+
+要了解一個 library ， 可以先用dir(folium) ， 去看有什麻第一層的東西可以呼叫，
+
+接下來再用 help() 去看各自的介紹。
+
+folium.Map 建了一個map 物件， map.save("Map1.html") 用這個可以把這張圖，
+
+存起來，用網頁看.
+
+folium的特色， 是每種featureGroup 是個LayerControl的蓋念，
+
+add_child 這個func是每個class都有， 但說明，都沒講什麻，
+
+看來，其他的學習方式，是去library 的官網看doc .
+
+add_child 自來是加入，特效， 但最後特效會不會放進去，還是要看
+
+map這個被做出來的物件。
