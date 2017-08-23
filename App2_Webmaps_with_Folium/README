@@ -20,3 +20,11 @@ add_child 這個func是每個class都有， 但說明，都沒講什麻，
 add_child 自來是加入，特效， 但最後特效會不會放進去，還是要看
 
 map這個被做出來的物件。
+
+我還在想 style_function 裡面的fill_color 是如何來的，
+
+原來是在help裡的example .
+
+最後幾行， 就是把特效加入，以及多加弓個LayerControl ，
+
+可以當場把特效關了，或打開這樣。
