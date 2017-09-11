@@ -44,3 +44,9 @@ words_entry.focus()
 
 root.mainloop()
 
+"""
+
+Reference:
+http://infohost.nmt.edu/tcc/help/pubs/tkinter/web/index.html
+http://www.tkdocs.com/tutorial/firstexample.html
+"""
