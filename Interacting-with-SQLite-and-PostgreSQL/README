@@ -1,0 +1,7 @@
+Five steps to commmuncate with sql:
+
+1. Connect to database
+2. Create a cursor object
+3. Wirte a SQL query
+4. Commit changes
+5. Close database connection
