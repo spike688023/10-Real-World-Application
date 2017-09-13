@@ -1,0 +1,51 @@
+
+打man git or
+man git-reset 可以觀看相關 資訊。
+
+
+由下面--hard 參數可以得知， HEAD指標是指向當下的commit，不見得 是最新 的，
+
+因為可以做checkout, 而檔狀態分二種 ， index 跟working tree ，
+
+index指的是被git add 後 ，要準備提交，而且反緑的檔案，
+
+working tree 指的是目前目録下所 有檔案的狀態，
+
+像git diff 指的就 是  working tree 跟index 之間的狀態差別，
+
+以下面檔案c 被修改為例，git diff 出來的東西， 應該 是c 檔案被git add 時的狀態，
+
+到檔案c 被修改的這段 diff.
+git-reset - Reset current HEAD to the specified state
+
+--hard
+    Resets the index and working tree. Any changes to tracked files
+    in the working tree since <commit> are discarded.
+
+
+
+這個section 教的是
+git reset HEAD       ; 把緑色待提交的檔案，全變成紅色
+git reset HEAD filename   ;  只把某個指定的緑色檔變成紅色
+
+git reset --hard     ; 這個是我平常 用的，它會把紅色緑色的檔案都給清掉，
+                       回到HEAD 指像的commit 的最乾淨狀態。
+
+
+又觀察到一個狀態，當檔案c 是在index中，  如果我在裡面加東西，
+
+會出現這個狀態，因為這檔案是被追綜的， 所 以有修改，會被顥示出來，
+
+如果我改的是檔案d 沒有被追綜 的，  我怎麼改它， 都不會跑出modified的狀態。
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   c
+
+
+git checkout filename   ; 這個功能又不一樣喔， checkout我一班都是拿來切換commit
+                          或Branch， 但切之前，它要確認 你旳狀態是乾淨的，
+                          才讓 你做切換，也就 是git status 不能有紅緑色的字，
+                          但，這裡要checkout 的filename，要是有在index的才行 。

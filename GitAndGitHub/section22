@@ -1,0 +1,64 @@
+Fast-Forward:
+
+這講的是 git merged的一個狀態，
+
+假設 master branch 是主線，而副線 feature 由主線往外延 申了一筆commit，
+
+而master沒變， 此時如果想把feature加入master主線 ，讓它有這個feature，
+
+也就 是把master branch 指到跟feature branch一樣的地方，
+
+第一步就是把HEAD切到 master branch ，再下git merge feature，
+
+這樣一來就 會merge而且會跑 出fast-forward的字樣，因為HEAD是checkout回去，
+
+分崎點的commit，所 以這裡merge出來的狀態是fast-forward，
+
+如果 master branch往前進了幾筆commit，HEAD checkout到這筆，
+
+再做git merge時，就可能會產生conflict，而且解 完後 ，會跑 出merge commit.
+
+
+
+
+這樣就 可以理解 ，
+
+git pull
+git pull --rebase
+
+的差別了，
+
+首先，git pull 是git fetch加上  git merge ，
+
+所以有加上自已commit時，都會產生merged commit ，沒有就 是fast-forward.
+
+而git pull --rebase，
+
+應該 會多做一步checkout 到分崎點的commit，再做merge 進而不產生討厭的merge commit ，
+
+整 個branch的線圖也會乾淨一點, 自已的commit , 應該 是後 面會做cherry pick的動作，
+
+再上上去。
+
+
+
+
+這裡來猜 測一下，Gerrit 上的rebase 紐，
+
+refs/for  其實是 base 在一筆已經在repository的commit上 ，
+
+長出很多分支,  每個分支的parent, 都是這筆， 但merge的時侯，只會朝某個方向，
+
+造成其它筆，的parent變紅色，要你做rebase，
+
+而rebase我覺得 Gerrit 是用cherry pick 建在，目前最新的commit 上。
+
+
+
+這又能講 到 Gerrit 為什麼會發 生  ,有多筆commit 掛merge 但卻沒進的問題了，
+
+二筆commit 指向同一個parent，同做按merged ，發 生race condition ，
+
+某一條先做了，merge了幾筆，另一條因為cpu處理之類 的問題 ，之後 才拿到控制權做merge，
+
+如此一來，造成 先做的，雖然掛merged ，反倒成了優靈 commit.
